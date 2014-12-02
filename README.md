@@ -1,4 +1,4 @@
-kiinlam.github.io
+blog.flappyend.com
 =================
 
-https://kiinlam.github.io
+http://blog.flappyend.com
