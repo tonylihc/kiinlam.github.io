@@ -6,7 +6,11 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://blog.flappyend.com" # the base hostname & protocol for your site
 twitter_username: kiinlam
 github_username:  kiinlam
+author_info: <a href="http://blog.flappyend.com/">Kiinlam</a>
 
 # Build settings
 markdown: kramdown
+permalink: /:title
+paginate: 8
+feed: /feed.xml
 # highlighter: null
