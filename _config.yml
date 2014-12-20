@@ -14,3 +14,11 @@ permalink: /:title
 paginate: 8
 feed: /feed.xml
 # highlighter: null
+
+defaults:
+  -
+    scope:
+      path: "_posts"
+    values:
+      author: <a href="http://blog.flappyend.com/">Kiinlam</a>
+      meta: ""
