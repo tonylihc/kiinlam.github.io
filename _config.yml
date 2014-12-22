@@ -13,7 +13,7 @@ markdown: kramdown
 permalink: /:title
 paginate: 8
 feed: /feed.xml
-# highlighter: null
+highlighter: null
 
 defaults:
   -

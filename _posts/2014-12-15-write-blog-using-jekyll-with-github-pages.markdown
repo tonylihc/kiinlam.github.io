@@ -60,22 +60,20 @@ tags: win8 cygwin ruby jekyll bundler github-page
 ## 安装ruby
 虽然cygwin提供了ruby的安装包下载，但我在使用时却经常遇到奇怪的问题，最后选择自己[下载ruby][ruby]来编译安装。
 
-{% highlight bash linenos %}
-# 下载（建议使用最新稳定版本）
-$ wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz
-# 解压
-$ tar xf ruby-2.1.5.tar.gz
-# 进入文件夹
-$ cd ruby-2.1.5
-# 配置
-$ ./configure
-# 编译
-$ make
-# 安装
-$ make install
-# 检查是否成功，有输出版本号即成功
-$ ruby -v
-{% endhighlight %}
+    # 下载（建议使用最新稳定版本）
+    $ wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz
+    # 解压
+    $ tar xf ruby-2.1.5.tar.gz
+    # 进入文件夹
+    $ cd ruby-2.1.5
+    # 配置
+    $ ./configure
+    # 编译
+    $ make
+    # 安装
+    $ make install
+    # 检查是否成功，有输出版本号即成功
+    $ ruby -v
 
 ---
 

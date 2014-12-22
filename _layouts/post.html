@@ -14,7 +14,14 @@ layout: default
 
 </div>
 <hr/>
- <div id="disqus_thread"></div>
+<div id="disqus_thread"></div>
+<script src="{{ "/assets/prettify/prettify.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript">
+  window.onload = function () {
+      [].slice.call(document.querySelectorAll('pre')).forEach(function(i){i.className = 'prettyprint linenums';});
+      prettyPrint();
+  };
+</script>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'flappyend'; // required: replace example with your forum shortname
