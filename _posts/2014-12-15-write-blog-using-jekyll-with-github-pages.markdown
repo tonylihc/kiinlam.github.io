@@ -3,6 +3,7 @@ layout: post
 title:  "win8系统下使用jekyll在github上写博客"
 date:   2014-12-15
 categories: cygwin github-page jekyll
+tags: win8 cygwin ruby jekyll bundler github-page
 ---
 决定在github上开始写博，并且使用github pages支持的[jekyll][jekyll]来生成页面。对于习惯于windows环境的人来说，要完成这一目标，需要解决几个问题：
 
@@ -59,20 +60,22 @@ categories: cygwin github-page jekyll
 ## 安装ruby
 虽然cygwin提供了ruby的安装包下载，但我在使用时却经常遇到奇怪的问题，最后选择自己[下载ruby][ruby]来编译安装。
 
-    # 下载（建议使用最新稳定版本）
-    $ wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz
-    # 解压
-    $ tar xf ruby-2.1.5.tar.gz
-    # 进入文件夹
-    $ cd ruby-2.1.5
-    # 配置
-    $ ./configure
-    # 编译
-    $ make
-    # 安装
-    $ make install
-    # 检查是否成功，有输出版本号即成功
-    $ ruby -v
+{% highlight bash linenos %}
+# 下载（建议使用最新稳定版本）
+$ wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz
+# 解压
+$ tar xf ruby-2.1.5.tar.gz
+# 进入文件夹
+$ cd ruby-2.1.5
+# 配置
+$ ./configure
+# 编译
+$ make
+# 安装
+$ make install
+# 检查是否成功，有输出版本号即成功
+$ ruby -v
+{% endhighlight %}
 
 ---
 
