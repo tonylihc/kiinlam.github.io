@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "win8系统下使用jekyll在github上写博客"
+title:  win8系统下使用jekyll在github上写博客
 date:   2014-12-15
-categories: cygwin github-page jekyll
+categories: jekyll
 tags: win8 cygwin ruby jekyll bundler github-page
 ---
 决定在github上开始写博，并且使用github pages支持的[jekyll][jekyll]来生成页面。对于习惯于windows环境的人来说，要完成这一目标，需要解决几个问题：
