@@ -3,7 +3,7 @@ layout: post
 title:  在jekyll中创建自定义页面
 date:   2014-12-22
 categories: jekyll
-tags: jekyll github-page
+tags: jekyll
 ---
 
 在jekyll博客系统中创建自定义页面，有两种基本方式：

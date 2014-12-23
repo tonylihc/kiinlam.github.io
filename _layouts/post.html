@@ -14,6 +14,15 @@ layout: default
 
 </div>
 <hr/>
+<div class="post-recent">
+  {% if page.previous %}
+    <p>上一篇 <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></p>
+  {% endif %}
+  {% if page.next %}
+    <p>下一篇 <a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></p>
+  {% endif %}
+</div>
+<hr/>
 <div id="disqus_thread"></div>
 <script src="{{ "/assets/prettify/prettify.js" | prepend: site.baseurl }}"></script>
 <script type="text/javascript">
@@ -33,4 +42,3 @@ layout: default
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
