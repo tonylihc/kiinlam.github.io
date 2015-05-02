@@ -36,6 +36,9 @@ body {
 .top_logo {
     height: 149px;
 }
+.top_logo img {
+    margin-top: 20px;
+}
 
 .pdv_class {
     position: absolute;

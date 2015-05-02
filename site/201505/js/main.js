@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var timeout         = 500;
 	var closetimer		= 0;
-	var ddmenuitem      = 0;
+	var ddmenuitem      = null;
 
 	function dropmenu_open(){
 		dropmenu_canceltimer();
@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 	function dropmenu_close(){
 		if(ddmenuitem) {
-			ddmenuitem.css('display', 'none');
+            ddmenuitem.fadeOut();
 		}
 	}
 
