@@ -1,0 +1,204 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+	font-family: "Microsoft Yahei",Verdana,Arial;
+	background:#000 url(../images/bg.png) repeat-x;
+}
+#contain {
+    height: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    position: relative;
+	width:1002px;
+}
+#content {
+	width:1002px;
+	height:335px;
+	background: #D3D3D3;
+	margin:0 auto;
+}
+#bottom {
+    margin: 0 auto;
+    position: relative;
+	width:1002px;
+	height:164px;
+	text-align: center;
+    font-size: 12px;
+	background:url(../images/bbg.png) repeat-x;
+}
+#top {
+    margin: 0 auto;
+    position: relative;
+    z-index: 99;
+	width:1002px;
+}
+.top_logo {
+    height: 149px;
+}
+
+.pdv_class {
+    position: absolute;
+}
+div, li, td, p, select, input, textarea, a, button, input {
+    color: #505050;
+}
+img {
+    border: 0;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+a:link, a:visited, a:active {
+    color: #505050;
+    text-decoration: none;
+}
+a.nomal:link, a.nomal:visited, a.nomal:active {
+    color: #505050;
+    text-decoration: underline;
+}
+a:hover {
+    color: #ff0000;
+    text-decoration: underline;
+}
+
+#sl_container {
+    margin: 0 auto;
+    padding: 0;
+    width: 1002px;
+}
+.slides_container {
+    position: relative;
+    width: 1002px;
+    height: 330px;
+    overflow: hidden;
+}
+.slides_container a {
+    display: block;
+    width: 1002px;
+    height: 330px;
+    position: absolute;
+    top: 0;
+    left: 1002px;
+}
+.slides_container .cur {
+    z-index: 5;
+}
+.slides_container .next {
+    z-index: 9;
+}
+.pagination_bg {
+    width: 1002px;
+    height: 14px;
+    background: #2F2E2E;
+}
+.pagination {
+    float: right;
+    height: 14px;
+}
+.pagination li {
+    width: 119px;
+    height: 14px;
+    float: left;
+    list-style: none;
+    margin: 0 0 0 1px;
+}
+.pagination li span {
+    height: 14px;
+    display: block;
+    background: #646464;
+    cursor: pointer;
+}
+.pagination li.cur span {
+    background: #00B4F1;
+    cursor: default;
+}
+
+#bottommenu {
+    padding: 20px 0;
+    color: #d3d3d3;
+}
+#bottommenu a:link, #bottommenu a:visited, #bottommenu a:active {
+    color: #d3d3d3;
+    margin: 0 10px;
+    text-decoration: none;
+}
+#bottommenu a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+.copyright {
+    color: #d3d3d3;
+}
+
+#dropmenu {
+    height: 64px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+#dropmenu li {
+    float: left;
+    line-height: 64px;
+    list-style: none;
+}
+#dropmenu li a {
+    background: url("../images/menu.png") no-repeat;
+    color: #ebebea;
+    display: block;
+    line-height: 64px;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 139px;
+}
+#dropmenu .dropmenu_now {
+    background: url("../images/menunow.png") no-repeat;
+    color: #202020;
+}
+#dropmenu li a:hover {
+    background: url("../images/menunow.png") no-repeat;
+    color: #202020;
+}
+#dropmenu li ul {
+    background:#2f2e2e;
+    padding: 10px 20px;
+    position: absolute;
+    width: 180px;
+    display: none;
+}
+#dropmenu ul a {
+    background: #2f2e2e;
+    color: #fff;
+    line-height: 36px;
+    padding-left: 10px;
+    text-align: left;
+    width: 170px;
+}
+#dropmenu ul a:hover {
+    background: #008ac2;
+    color: #fff;
+}
+
+.content_section {
+	width:200px;
+	height:245px;
+	float:left;
+	margin-left: 40px;
+	margin-top: 20px;
+}
+.content_section  h3 a{
+	font-size: 14px;
+	font-weight:bold;
+	color:#303030;
+}
+.content_section  div{
+	margin-top:10px;
+	font-size:12px;
+	color:#505050;
+}
+
