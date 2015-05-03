@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var timeout         = 500;
+	var timeout         = 300;
 	var closetimer		= 0;
 	var ddmenuitem      = null;
 
@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 	function dropmenu_close(){
 		if(ddmenuitem) {
-            ddmenuitem.fadeOut();
+            ddmenuitem.css('display', 'none');
 		}
 	}
 
