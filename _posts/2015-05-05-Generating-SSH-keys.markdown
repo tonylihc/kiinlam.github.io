@@ -21,7 +21,6 @@ Github提供的生成SSH密钥帮助页面经常抽风，要不访问不了，�
 
 ## Check for SSH keys
 
-First, we need to check for existing SSH keys on your computer. Open the command line and enter:
 首先，我们需要先检查你电脑上已有的SSH密钥。打开命令行窗口bash（如果安装了Git的Windows版本，可以打开Git Bash）并输入：
 
     ls -al ~/.ssh
@@ -29,10 +28,10 @@ First, we need to check for existing SSH keys on your computer. Open the command
 
 检查列出来的目录中是否已有SSH公钥。默认情况下，公钥文件名将是下列中的一个：
 
-id_dsa.pub
-id_ecdsa.pub
-id_ed25519.pub
-id_rsa.pub
+> id_dsa.pub
+> id_ecdsa.pub
+> id_ed25519.pub
+> id_rsa.pub
 
 ---
 
@@ -40,20 +39,20 @@ id_rsa.pub
 
 1. 复制下面的内容，并粘贴到打开的命令行窗口中。确保你已经替换为你的GitHub email地址。
 
-    ssh-keygen -t rsa -C "your_email@example.com"
-    # 创建一个新的SSH密钥，以提供的email为标识
-    # 生成rsa密钥对
+        ssh-keygen -t rsa -C "your_email@example.com"
+        # 创建一个新的SSH密钥，以提供的email为标识
+        # 生成rsa密钥对
 
 2. 强烈建议保持默认的设置，当出现"Enter a file in which to save the key"时，按下回车键即可。
 
-    # Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+        # Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
 
 3. 输入一个口令
 
-    # Enter passphrase (empty for no passphrase): [Type a passphrase]
-    # Enter same passphrase again: [Type passphrase again]
+        # Enter passphrase (empty for no passphrase): [Type a passphrase]
+        # Enter same passphrase again: [Type passphrase again]
 
-> Tip：强烈建议设置一个很好的，安全的口令。更多信息，见“[使用SSH密钥的口令](https://help.github.com/articles/working-with-ssh-key-passphrases/)”。
+    > Tip：强烈建议设置一个很好的，安全的口令。更多信息，见“[使用SSH密钥的口令](https://help.github.com/articles/working-with-ssh-key-passphrases/)”。
 
 4. 输入口令之后，你会得到一个指纹码或id，这就是你的SSH密钥。它看起来像这样：
 
@@ -70,13 +69,13 @@ id_rsa.pub
 
 1. 确保SSH代理已开启：
 
-    # 后台运行SSH代理
-    eval "$(ssh-agent -s)"
-    # Agent pid 59566
+        # 后台运行SSH代理
+        eval "$(ssh-agent -s)"
+        # Agent pid 59566
 
 2. 添加生成的SSH密钥到代理中：
 
-    ssh-add ~/.ssh/id_rsa
+        ssh-add ~/.ssh/id_rsa
 
 ---
 
@@ -107,19 +106,19 @@ id_rsa.pub
 
 1. 打开命令行窗口然后输入：
 
-    ssh -T git@github.com
-    # Attempts to ssh to GitHub
+        ssh -T git@github.com
+        # Attempts to ssh to GitHub
 
 2. 你将看到警告内容：
 
-    # The authenticity of host 'github.com (207.97.227.239)' can't be established.
-    # RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
-    # Are you sure you want to continue connecting (yes/no)?
+        # The authenticity of host 'github.com (207.97.227.239)' can't be established.
+        # RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+        # Are you sure you want to continue connecting (yes/no)?
 
 检查验证信息中的指纹是否匹配，然后输入“yes”：
 
-    # Hi username! You've successfully authenticated, but GitHub does not
-    # provide shell access.
+        # Hi username! You've successfully authenticated, but GitHub does not
+        # provide shell access.
 
 3. 如果信息中的username是你的，表明你成功设置了SSH密钥！
 
