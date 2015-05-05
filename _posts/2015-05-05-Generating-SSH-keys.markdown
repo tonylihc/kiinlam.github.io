@@ -19,7 +19,7 @@ Github提供的生成SSH密钥帮助页面经常抽风，要不访问不了，�
 
 ---
 
-## Check for SSH keys（检查SSH密钥）
+## Check for SSH keys
 
 First, we need to check for existing SSH keys on your computer. Open the command line and enter:
 首先，我们需要先检查你电脑上已有的SSH密钥。打开命令行窗口bash（如果安装了Git的Windows版本，可以打开Git Bash）并输入：
@@ -36,7 +36,7 @@ id_rsa.pub
 
 ---
 
-## Generate a new SSH key（生成新的SSH密钥）
+## Generate a new SSH key
 
 1. 复制下面的内容，并粘贴到打开的命令行窗口中。确保你已经替换为你的GitHub email地址。
 
@@ -64,7 +64,7 @@ id_rsa.pub
 
 ---
 
-## Add your key to the ssh-agent（添加密钥到SSH代理）
+## Add your key to the ssh-agent
 
 配置SSH代理程序使用你生成的SSH密钥：
 
@@ -80,7 +80,7 @@ id_rsa.pub
 
 ---
 
-## Add your SSH key to your account（添加密钥到帐号）
+## Add your SSH key to your account
 
 配置你的GitHub帐户使用你的SSH密钥：
 
@@ -101,7 +101,7 @@ id_rsa.pub
 
 ---
 
-## Test the connection（测试连接）
+## Test the connection
 
 为了确保一切工作正常，你现在尝试连接到SSH。当你这样做时，会要求输入密码进行验证，这是你之前创建的SSH密钥口令。
 
