@@ -29,8 +29,11 @@ Github提供的生成SSH密钥帮助页面经常抽风，要不访问不了，�
 检查列出来的目录中是否已有SSH公钥。默认情况下，公钥文件名将是下列中的一个：
 
 > id_dsa.pub
+> 
 > id_ecdsa.pub
+> 
 > id_ed25519.pub
+> 
 > id_rsa.pub
 
 ---
@@ -56,10 +59,10 @@ Github提供的生成SSH密钥帮助页面经常抽风，要不访问不了，�
 
 4. 输入口令之后，你会得到一个指纹码或id，这就是你的SSH密钥。它看起来像这样：
 
-    # Your identification has been saved in /Users/you/.ssh/id_rsa.
-    # Your public key has been saved in /Users/you/.ssh/id_rsa.pub.
-    # The key fingerprint is:
-    # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com
+        # Your identification has been saved in /Users/you/.ssh/id_rsa.
+        # Your public key has been saved in /Users/you/.ssh/id_rsa.pub.
+        # The key fingerprint is:
+        # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com
 
 ---
 
@@ -124,7 +127,6 @@ Github提供的生成SSH密钥帮助页面经常抽风，要不访问不了，�
 
 如果你收到一个关于“拒绝访问”的信息，你可以阅读这些[问题诊断](https://help.github.com/articles/error-permission-denied-publickey/)。
 
-If you're switching from HTTPS to SSH, you'll now need to update your remote repository URLs. For more information, see Changing a remote's URL.
 如果你从HTTPS切换到SSH，你需要更新远程仓库的URL。有关更多信息，请参阅[更改远程仓库的URL](https://help.github.com/articles/changing-a-remote-s-url/)。
 
 ---
