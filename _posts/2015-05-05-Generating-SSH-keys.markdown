@@ -118,7 +118,7 @@ Github提供的生成SSH密钥帮助页面经常抽风，要不访问不了，�
         # RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
         # Are you sure you want to continue connecting (yes/no)?
 
-检查验证信息中的指纹是否匹配，然后输入“yes”：
+        检查验证信息中的指纹是否匹配，然后输入“yes”：
 
         # Hi username! You've successfully authenticated, but GitHub does not
         # provide shell access.
