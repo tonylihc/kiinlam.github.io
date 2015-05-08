@@ -12,9 +12,9 @@ EJS第2版本去除了过滤功能。（[EJS第1版][EJSv1]）
 
 ## 安装
 
-    ```
-    $ npm install ejs
-    ```
+```
+$ npm install ejs
+```
 
 ## 特性
 
@@ -39,14 +39,14 @@ EJS第2版本去除了过滤功能。（[EJS第1版][EJSv1]）
 
 ## 用法
 
-    ```javascript
-    var template = ejs.compile(str, options);
-    template(data);
-    // => Rendered HTML string
+```javascript
+var template = ejs.compile(str, options);
+template(data);
+// => Rendered HTML string
 
-    ejs.render(str, data, options);
-    // => Rendered HTML string
-    ```
+ejs.render(str, data, options);
+// => Rendered HTML string
+```
 
 你也可以使用 `ejs.render(dataAndOptions);` ，将所有东西放到一个对象中传入。
 
@@ -80,13 +80,13 @@ EJS第2版本去除了过滤功能。（[EJS第1版][EJSv1]）
 
 你也可以使用原始输出标记（`<%-`）以避免重复的escape。
 
-    ```html
-    <ul>
-      <% users.forEach(function(user){ %>
-        <%- include('user/show', {user: user}) %>
-      <% }); %>
-    </ul>
-    ```
+```html
+<ul>
+  <% users.forEach(function(user){ %>
+    <%- include('user/show', {user: user}) %>
+  <% }); %>
+</ul>
+```
 
 外部引入在执行时被插入，所以可以使用变量来动态设置路径值（如 `<%- include(somePath) %>` ）。顶级变量随处可用，局部变量需要以参数形式层层传递。
 
@@ -96,19 +96,19 @@ EJS第2版本去除了过滤功能。（[EJS第1版][EJSv1]）
 
 自定义分隔符可以在单独模板或全局应用：
 
-    ```javascript
-    var ejs = require('ejs'),
-        users = ['geddy', 'neil', 'alex'];
+```javascript
+var ejs = require('ejs'),
+    users = ['geddy', 'neil', 'alex'];
 
-    // Just one template
-    ejs.render('<?= users.join(" | "); ?>', {users: users}, {delimiter: '?'});
-    // => 'geddy | neil | alex'
+// Just one template
+ejs.render('<?= users.join(" | "); ?>', {users: users}, {delimiter: '?'});
+// => 'geddy | neil | alex'
 
-    // Or globally
-    ejs.delimiter = '$';
-    ejs.render('<$= users.join(" | "); $>', {users: users});
-    // => 'geddy | neil | alex'
-    ```
+// Or globally
+ejs.delimiter = '$';
+ejs.render('<$= users.join(" | "); $>', {users: users});
+// => 'geddy | neil | alex'
+```
 
 ## 缓存
 
@@ -116,11 +116,11 @@ EJS ships with a basic in-process cache for caching the intermediate JavaScript
 functions used to render templates. It's easy to plug in LRU caching using
 Node's `lru-cache` library:
 
-    ```javascript
-    var ejs = require('ejs')
-      , LRU = require('lru-cache');
-    ejs.cache = LRU(100); // LRU cache with 100-item limit
-    ```
+```javascript
+var ejs = require('ejs')
+  , LRU = require('lru-cache');
+ejs.cache = LRU(100); // LRU cache with 100-item limit
+```
 
 If you want to clear the EJS cache, call `ejs.clearCache`. If you're using the
 LRU cache and need a different limit, simple reset `ejs.cache` to a new instance
@@ -130,16 +130,16 @@ of the LRU.
 
 通过外部引入实现布局
 
-    ```html
-    <%- include('header') -%>
-    <h1>
-      Title
-    </h1>
-    <p>
-      My page
-    </p>
-    <%- include('footer') -%>
-    ```
+```html
+<%- include('header') -%>
+<h1>
+  Title
+</h1>
+<p>
+  My page
+</p>
+<%- include('footer') -%>
+```
 
 ## 客户端支持
 
