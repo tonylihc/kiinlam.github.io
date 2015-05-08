@@ -8,11 +8,11 @@ tags: EJS
 # EJS v2 简介及语法
 
 Embedded JavaScript templates（嵌入式JavaScript模板）
-EJS第2版本去除了过滤功能。
+EJS第2版本去除了过滤功能。（[EJS第1版][EJSv1]）
 
 ## 安装
 
-```bash
+```
 $ npm install ejs
 ```
 
@@ -31,7 +31,7 @@ $ npm install ejs
 
 ## 范例
 
-```html
+```
 <% if (user) { %>
   <h2><%= user.name %></h2>
 <% } %>
@@ -39,7 +39,7 @@ $ npm install ejs
 
 ## 用法
 
-```javascript
+```
 var template = ejs.compile(str, options);
 template(data);
 // => Rendered HTML string
@@ -80,7 +80,7 @@ ejs.render(str, data, options);
 
 你也可以使用原始输出标记（`<%-`）以避免重复的escape。
 
-```html
+```
 <ul>
   <% users.forEach(function(user){ %>
     <%- include('user/show', {user: user}) %>
@@ -96,7 +96,7 @@ ejs.render(str, data, options);
 
 自定义分隔符可以在单独模板或全局应用：
 
-```javascript
+```
 var ejs = require('ejs'),
     users = ['geddy', 'neil', 'alex'];
 
@@ -116,7 +116,7 @@ EJS ships with a basic in-process cache for caching the intermediate JavaScript
 functions used to render templates. It's easy to plug in LRU caching using
 Node's `lru-cache` library:
 
-```javascript
+```
 var ejs = require('ejs')
   , LRU = require('lru-cache');
 ejs.cache = LRU(100); // LRU cache with 100-item limit
@@ -130,7 +130,7 @@ of the LRU.
 
 通过外部引入实现布局
 
-```html
+```
 <%- include('header') -%>
 <h1>
   Title
@@ -151,6 +151,8 @@ of the LRU.
 - - -
 
 ## 参考资料
+* [EJSv1][EJSv1]
 * [EJS][EJS]
 
+[EJSv1]: https://github.com/tj/ejs
 [EJS]: https://github.com/mde/ejs
