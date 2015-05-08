@@ -23,11 +23,4 @@ layout: default
   {% endif %}
 </div>
 <hr/>
-<script src="{{ "/assets/prettify/prettify.js" | prepend: site.baseurl }}"></script>
-<script type="text/javascript">
-  window.onload = function () {
-      [].slice.call(document.querySelectorAll('pre')).forEach(function(i){i.className = 'prettyprint linenums';});
-      prettyPrint();
-  };
-</script>
 {% include comments.html %}
