@@ -1,0 +1,156 @@
+---
+layout: post
+title:  EJS
+date:   2015-05-08
+categories: javascript
+tags: EJS
+---
+# EJS v2 简介及语法
+
+Embedded JavaScript templates（嵌入式JavaScript模板）
+EJS第2版本去除了过滤功能。
+
+## 安装
+
+```bash
+$ npm install ejs
+```
+
+## 特性
+
+  * 流程控制 `<% %>`
+  * 使用escape输出 `<%= %>`
+  * 不使用escape直接输出 `<%- %>`
+  * 清除多余的空白，对输出标签没有效果 `-%>` 
+  * 自定义分隔符 （e.g., 使用 '<? ?>' 代替 '<% %>'）
+  * 外部引入
+  * 客户端支持
+  * 静态缓存 JavaScript
+  * 静态缓存模版
+  * 符合 [Express](http://expressjs.com) 视图系统
+
+## 范例
+
+```html
+<% if (user) { %>
+  <h2><%= user.name %></h2>
+<% } %>
+```
+
+## 用法
+
+```javascript
+var template = ejs.compile(str, options);
+template(data);
+// => Rendered HTML string
+
+ejs.render(str, data, options);
+// => Rendered HTML string
+```
+
+你也可以使用 `ejs.render(dataAndOptions);` ，将所有东西放到一个对象中传入。
+
+## 配置选项
+
+  - `cache`           缓存编译后的函数，需要 `filename`
+  - `filename`        作为键用于 `cache` , 以及外部引入
+  - `context`         函数执行上下文
+  - `compileDebug`    When `false` no debug instrumentation is compiled
+  - `client`          返回单独的编译后的函数
+  - `delimiter`       开始及结束的分隔符
+  - `debug`           输出生成的函数体
+  - `_with`           是否使用 `with() {}` 结构. 如果是 `false` 则局部变量会被存储在 `locals` 对象.
+  - `rmWhitespace`    清除不需要的空白
+
+## 标记
+
+  - `<%`              脚本标记，用于流程控制，无输出
+  - `<%=`             输出escape后的值
+  - `<%-`             输出未被escape的值
+  - `<%#`             评论标记，不执行，不输出
+  - `<%%`             输出直接量 '<%'
+  - `%>`              标准的结束标记
+  - `-%>`             清除不需要空白的结束标记
+
+## 外部引入
+
+外部引入不要求使用绝对路径，它假设使用的是相对路径，相对于调用 `include` 方法的文件。 （需要提供
+`filename` ） 例如你正在 `./views/users.ejs` 中引入外部文件 `./views/user/show.ejs`，
+你可以使用 `<%- include('user/show') %>`.
+
+你也可以使用原始输出标记（`<%-`）以避免重复的escape。
+
+```html
+<ul>
+  <% users.forEach(function(user){ %>
+    <%- include('user/show', {user: user}) %>
+  <% }); %>
+</ul>
+```
+
+外部引入在执行时被插入，所以可以使用变量来动态设置路径值（如 `<%- include(somePath) %>` ）。顶级变量随处可用，局部变量需要以参数形式层层传递。
+
+提示：外部引入支持 `<% include user/show %>` 这种形式。
+
+## 自定义分隔符
+
+自定义分隔符可以在单独模板或全局应用：
+
+```javascript
+var ejs = require('ejs'),
+    users = ['geddy', 'neil', 'alex'];
+
+// Just one template
+ejs.render('<?= users.join(" | "); ?>', {users: users}, {delimiter: '?'});
+// => 'geddy | neil | alex'
+
+// Or globally
+ejs.delimiter = '$';
+ejs.render('<$= users.join(" | "); $>', {users: users});
+// => 'geddy | neil | alex'
+```
+
+## 缓存
+
+EJS ships with a basic in-process cache for caching the intermediate JavaScript
+functions used to render templates. It's easy to plug in LRU caching using
+Node's `lru-cache` library:
+
+```javascript
+var ejs = require('ejs')
+  , LRU = require('lru-cache');
+ejs.cache = LRU(100); // LRU cache with 100-item limit
+```
+
+If you want to clear the EJS cache, call `ejs.clearCache`. If you're using the
+LRU cache and need a different limit, simple reset `ejs.cache` to a new instance
+of the LRU.
+
+## 布局
+
+通过外部引入实现布局
+
+```html
+<%- include('header') -%>
+<h1>
+  Title
+</h1>
+<p>
+  My page
+</p>
+<%- include('footer') -%>
+```
+
+## 客户端支持
+
+到 [Latest Release](https://github.com/mde/ejs/releases/latest), 下载
+`./ejs.js` 或 `./ejs.min.js`.
+
+引入两者中的一个，调用 `ejs.render(str)`。
+
+- - -
+
+## 参考资料
+* [EJS][EJS]
+
+[EJS]: https://github.com/mde/ejs
