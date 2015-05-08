@@ -8,6 +8,7 @@ tags: EJS
 # EJS v2 简介及语法
 
 Embedded JavaScript templates（嵌入式JavaScript模板）
+
 EJS第2版本去除了过滤功能。（[EJS第1版][EJSv1]）
 
 ## 安装
