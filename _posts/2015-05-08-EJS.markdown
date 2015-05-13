@@ -153,12 +153,19 @@ of the LRU.
 
 目录结构：
 │
+
 │  index.js
+
 │
+
 └─views
-        about.ejs
-        footer.ejs
-        header.ejs
+
+  about.ejs
+
+  footer.ejs
+
+  header.ejs
+
 
 index.js
 
