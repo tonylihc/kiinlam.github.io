@@ -9,7 +9,7 @@ tags: EJS
 
 Embedded JavaScript templates（嵌入式JavaScript模板）
 
-EJS第2版本去除了过滤功能。（[EJS第1版][EJSv1]）
+[EJS第2版][EJS]去除了过滤功能。（[EJS第1版][EJSv1]）
 
 ## 安装
 
@@ -148,6 +148,86 @@ of the LRU.
 `./ejs.js` 或 `./ejs.min.js`.
 
 引入两者中的一个，调用 `ejs.render(str)`。
+
+## 范例
+
+目录结构：
+│
+│  index.js
+│
+└─views
+        about.ejs
+        footer.ejs
+        header.ejs
+
+index.js
+
+```javascript
+var ejs = require('ejs');
+var fs = require('fs');
+var read = fs.readFileSync;
+var fetchView = function (name) {
+    return read('./views/' + name, 'utf8');
+};
+var render = function (filename, data) {
+    return ejs.render(fetchView(filename), data, {filename: './views/' + filename});
+};
+var renderFile = function (filename, data, callback) {
+    ejs.renderFile('views/' + filename, data, {filename: 'views/' + filename}, callback);
+};
+// 显示header
+var htmlStr = render('about.ejs', {name: 'kiinlam', headerShow: true});
+
+console.log(htmlStr);
+console.log('-------------');
+
+var cb = function (err, html) {
+    if (err) {
+
+    }
+    console.log(html);
+}
+// 不显示header
+renderFile('about.ejs', {name: 'kiinlam2', headerShow: false}, cb);
+```
+
+about.ejs
+
+```html
+<%# include作为语法使用 %>
+<% if (headerShow) { %><% include header %><% } %>
+<h2>name: <%= name %></h2>
+<%# include作为函数使用，注意开始标识符使用了unescape形式 %>
+<%- include('footer') %>
+```
+
+header.ejs
+
+```html
+<h1>http://blog.flappend.com</h1>
+```
+
+footer.ejs
+
+```html
+<p>copyright 2015</p>
+```
+
+执行`node index.js`输出以下内容：
+
+```html
+<h1>http://blog.flappend.com</h1>
+<h2>name: kiinlam</h2>
+
+<p>copyright 2015</p>
+
+-------------
+
+
+<h2>name: kiinlam2</h2>
+
+<p>copyright 2015</p>
+```
 
 - - -
 
