@@ -30,7 +30,7 @@ react一个最吸引我的特性是组件，它是模块化的，所有的组件
   * 在`render`中将state赋值给各个component的prop，子组件包含`Header`组件、`MainSection`组件、`Footer`组件；
   * 添加`_onChange`事件回调方法，触发该回调时，执行`setState`，更新UI。
 
-`Store`只在顶级的组件中接入，子组件通过prop层层传递，所有子组件不直接从`Store`里检索数据，这是一种很好的设计方式，有助降低数据耦合度。
+Store只在顶级的组件中接入，子组件通过prop层层传递，所有子组件不直接从Store里检索数据，这是一种很好的设计方式，有助降低数据耦合度。
 
 ### Header组件
 
@@ -43,8 +43,8 @@ react一个最吸引我的特性是组件，它是模块化的，所有的组件
 
   * 基础的prop验证
   
-        - 要求必须提供对象集合
-        - 要求提供是否全部完成的布尔值；
+    - 要求必须提供对象集合
+    - 要求提供是否全部完成的布尔值；
         
   * 在`render`中分类处理，数据为空时，返回null，隐藏元素，有数据时，显示列表内容，包含`TodoItem`组件，同时提供一个checkbox控件用于设置是否全部完成；
   * 添加切换设置全部完成的回调方法`_onToggleCompleteAll`，在调用时，执行相应Action方法`toggleCompleteAll`。
@@ -53,7 +53,7 @@ react一个最吸引我的特性是组件，它是模块化的，所有的组件
 
   * 基础的prop验证
   
-        - 要求必须提供对象集合；
+    - 要求必须提供对象集合；
         
   * 在`render`中计算未完成项目数量，并根据是否存在已完成项来显示清除全部完成项按钮，按钮绑定`onClick`事件；
   * 添加清除全部完成项的回调方法`_onClearCompletedClick`，在调用时，执行相应Action方法`destroyCompleted`。
@@ -62,7 +62,7 @@ react一个最吸引我的特性是组件，它是模块化的，所有的组件
 
   * 基础的prop验证
           
-          - 要求项目不可空；
+    - 要求项目不可空；
           
   * 在`getInitialStates`中设置初始值；
   * 在`render`中根据是否处于编辑状态，显示不同的元素，编辑状态下，包含了`TodoTextInput`组件，并设置了`onSave`和`value`的prop，非编辑状态下，显示切换是否完成的按钮，绑定了`onChange`事件，显示项目文字内容，绑定了`onDoubleClick`事件，显示删除按钮，绑定了`onClick`事件；
@@ -75,8 +75,8 @@ react一个最吸引我的特性是组件，它是模块化的，所有的组件
 
   * 基础的prop验证
           
-          - 要求`className`、`id`、`placeholder`、`value`为字符串；
-          - 存在`onSave`方法
+    - 要求`className`、`id`、`placeholder`、`value`为字符串；
+    - 存在`onSave`方法
   
   * 在`getInitialStates`中设置初始值；
   * 在`render`中返回输入文本框，绑定多个事件`onBlur`、`onChange`、`onKeyDown`；
