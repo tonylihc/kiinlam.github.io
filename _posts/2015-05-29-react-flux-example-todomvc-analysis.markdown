@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  react-flux-example-todomvc-analysis
+title:  react及flux架构范例Todomvc分析
 date:   2015-05-29
 categories: javascript
 tags: react flux
 ---
 
-# react及flux架构范例todomvc分析
+# react及flux架构范例Todomvc分析
 
 通过分析[flux-todomvc][flux-todomvc]源码，学习如何通过react构建web程序，了解编写react应用程序的一般步骤，同时掌握Flux的单向数据流动架构思想
 
