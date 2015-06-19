@@ -20,7 +20,7 @@ tags: nodejs
 
 # 范例
 
-### 不使用外部package的代码
+#### 不使用外部package的代码
 
 ```javascript
 var http = require('http');
@@ -48,7 +48,7 @@ app.listen(3001);
 console.log('server started on 127.0.0.1:3001');
 ```
 
-### 使用[superAgent][superagent]的代码
+#### 使用[superAgent][superagent]的代码
 
 ```javascript
 var http = require('http');
@@ -68,7 +68,7 @@ app.listen(3001);
 console.log('server started on 127.0.0.1:3001');
 ```
 
-### 使用[Express][expressjs] + [superAgent][superagent]的代码
+#### 使用[Express][expressjs] + [superAgent][superagent]的代码
 
 ```javascript
 var express = require('express');
