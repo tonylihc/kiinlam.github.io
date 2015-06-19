@@ -20,7 +20,7 @@ tags: nodejs
 
 # 范例
 
-## 不使用外部package的代码
+### 不使用外部package的代码
 
 ```javascript
 var http = require('http');
@@ -28,9 +28,9 @@ var http = require('http');
 var app = http.createServer(function (req, res) {
     // 查询本机ip
     var sreq = http.request({
-        host:     'sneezryworks.sinaapp.com',
-        path:     '/ip.php',
-        method:   req.method
+        host:     'sneezryworks.sinaapp.com', // 目标主机
+        path:     '/ip.php', // 目标路径
+        method:   req.method // 请求方式
     }, function(sres){
         sres.pipe(res);
         sres.on('end', function(){
@@ -48,7 +48,7 @@ app.listen(3001);
 console.log('server started on 127.0.0.1:3001');
 ```
 
-## 使用[superAgent][superagent]的代码
+### 使用[superAgent][superagent]的代码
 
 ```javascript
 var http = require('http');
@@ -56,7 +56,7 @@ var http = require('http');
 var app = http.createServer(function (req, res) {
     // 使用了superagent来发起请求
     var superagent = require('superagent');
-    // 查询本机ip
+    // 查询本机ip，这里需要根据实际情况选择get还是post
     var sreq = superagent.get('http://sneezryworks.sinaapp.com/ip.php');
     sreq.pipe(res);
     sreq.on('end', function(){
@@ -68,7 +68,7 @@ app.listen(3001);
 console.log('server started on 127.0.0.1:3001');
 ```
 
-## 使用[Express][expressjs] + [superAgent][superagent]的代码
+### 使用[Express][expressjs] + [superAgent][superagent]的代码
 
 ```javascript
 var express = require('express');
@@ -76,7 +76,7 @@ var app = express();
 app.get('/', function (req, res) {
     // 使用了superagent来发起请求
     var superagent = require('superagent');
-    // 查询本机ip
+    // 查询本机ip，这里需要根据实际情况选择get还是post
     var sreq = superagent.get('http://sneezryworks.sinaapp.com/ip.php');
     sreq.pipe(res);
     sreq.on('end', function(){
@@ -100,6 +100,7 @@ console.log('Express started on 127.0.0.1:3001');
 以前没搞过服务器，对请求转发、请求代理、反向代理这类东西不熟悉，如果叫法有误，烦请指正，顺便求科普下 :p
 
 - - -
+
 
 ## 参考资料
 * [简单的HTTP代理服务器][http-proxy-server]
