@@ -8,7 +8,7 @@ tags: mongoDB
 
 # 安装
 
-[mongoDB官网][mongoDB]下载安装（[Windows安装方法][install-mongodb-on-windows]）
+[mongoDB官网][mongoDB]下载安装（[Windows安装方法][install-on-windows]）
 
 # 基础知识
 
@@ -254,6 +254,129 @@ tags: mongoDB
                     "count" : 1
             }
     ]
+
+# mapReduce
+
+`map`：映射函数，内部调用`emit(key,value)`，集合按照`key`进行映射分组。
+
+`reduce`：简化函数，对`map`分组后的数据进行分组简化，`reduce(key,value)`中的`key`是`emit`中的`key`，而`value`则是`emit`分组结果的集合。
+
+`mapReduce`：最后执行的函数，参数为`map`、`reduce`和一些可选参数。
+
+    > db.users.mapReduce
+    function ( map , reduce , optionsOrOutString ){
+        var c = { mapreduce : this._shortName , map : map , reduce : reduce };
+        assert( optionsOrOutString , "need to supply an optionsOrOutString" )
+
+        if ( typeof( optionsOrOutString ) == "string" )
+            c["out"] = optionsOrOutString;
+        else
+            Object.extend( c , optionsOrOutString );
+
+        var raw = this._db.runCommand( c );
+        if ( ! raw.ok ){
+            __mrerror__ = raw;
+            throw Error( "map reduce failed:" + tojson(raw) );
+        }
+        return new MapReduceResult( this._db , raw );
+
+    }
+
+创建`map`函数
+
+    function (){
+        emit(this.name,{count:1});
+    }
+
+创建`reduce`函数
+    
+    function (key,value){
+        var result = {count:0};
+        for(var i = 0; i < value.length; i++){
+            result.count += value[i].count;
+        }
+        return result;
+    }
+
+执行`mapReduce`操作
+
+    > db.users.mapReduce(map,reduce,{"out":"collection"})
+
+假设有数据如下
+
+    { "_id" : ObjectId("55910457607379845607d9e2"), "name" : "kiinlam", "age" : 29 }
+    { "_id" : ObjectId("55910468607379845607d9e3"), "name" : "shadow", "age" : 26 }
+    { "_id" : ObjectId("55910992607379845607d9e5"), "name" : "foo", "age" : 29 }
+    { "_id" : ObjectId("55920545ff40738c1fd0a839"), "name" : "zz", "age" : 1 }
+    { "_id" : ObjectId("55911fca607379845607d9e6"), "name" : "foo", "age" : 22 }
+    { "_id" : ObjectId("55911fd3607379845607d9e7"), "name" : "foo", "age" : 22 }
+    { "_id" : ObjectId("55911fdf607379845607d9e8"), "name" : "foo", "age" : 22 }
+    { "_id" : ObjectId("55911feb607379845607d9e9"), "name" : "foo", "age" : 22 }
+
+输出结果
+
+    {
+            "result" : "collection",    // 存放最终结果的集合名
+            "timeMillis" : 28,
+            "counts" : {
+                    "input" : 8,    // 传入文档的次数
+                    "emit" : 8,    // emit函数被调用次数
+                    "reduce" : 1,    // reduce函数被调用次数
+                    "output" : 4    // 最后返回文档的个数
+            },
+            "ok" : 1
+    }
+
+查看集合`collection`中的结果
+
+    > db.collection.find()
+
+输出结果
+
+    { "_id" : "foo", "value" : { "count" : 5 } }
+    { "_id" : "kiinlam", "value" : { "count" : 1 } }
+    { "_id" : "shadow", "value" : { "count" : 1 } }
+    { "_id" : "zz", "value" : { "count" : 1 } }
+
+# 游标
+
+游标只表示一个引用，并不是真正的执行，在需要的时候，通过for循环或`next()`方法进行遍历读取，枚举结束后，游标销毁，不再返回数据。
+
+申明一个游标
+
+    > var list = db.collection.find()
+
+通过`forEach`遍历游标
+
+    > list.forEach(function(i){
+          print(i._id);
+      })
+
+输出结果
+
+    foo
+    kiinlam
+    shadow
+    zz
+
+或者通过`next`遍历集合
+
+    > var list = db.collection.find()
+    > list.next()
+    { "_id" : "foo", "value" : { "count" : 5 } }
+    > list.next()
+    { "_id" : "kiinlam", "value" : { "count" : 1 } }
+    > list.next()
+    { "_id" : "shadow", "value" : { "count" : 1 } }
+    > list.next()
+    { "_id" : "zz", "value" : { "count" : 1 } }
+    > list.next()
+    2015-07-01T11:27:38.186+0800 E QUERY    Error: error hasNext: false
+        at Error (<anonymous>)
+        at DBQuery.next (src/mongo/shell/query.js:255:15)
+        at (shell):1:6 at src/mongo/shell/query.js:255
+    > list
+    >
 
 - - -
 
