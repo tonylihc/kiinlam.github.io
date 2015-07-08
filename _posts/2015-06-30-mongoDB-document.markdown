@@ -32,9 +32,33 @@ tags: mongoDB
 
 默认连接至`test`数据库
 
+# 显示帮助
+
+    > help
+
+# 显示所有数据库名称
+
+    > show dbs
+
 # 切换数据库
 
     > use test
+
+# 显示当前连接的数据库名称
+
+    > db
+
+# 显示当前数据库所有集合
+
+    > show collections
+
+# 显示数据库支持的方法
+
+    > db.help()
+
+# 显示集合支持的方法
+
+    > db.users.help()
 
 # 创建集合
 
@@ -100,6 +124,10 @@ tags: mongoDB
     // 使用js function作为筛选条件
     > db.users.find({$where: function(){return this.name=='kiinlam'}})
 
+#### 限制查询数量limit
+    
+    > db.users.find({"age":22}).limit(10)
+
 
 # 更新操作update
 
@@ -127,17 +155,40 @@ tags: mongoDB
     // 如果匹配多条，默认只改第一条，将第四个参数设为true可全部更新
     > db.users.update({"name":"kiinlam"}, {$set:{"age":18}}, true, true)
 
+# 保存操作save
+
+    // 插入新文档，如果不提供"_id"字段
+    > db.users.save({"name":"kiinlam", "age":28})
+    // 更新已存在的文档
+    > db.users.save({"_id":"xxx","name":"kiinlam", "age":28})
+
 # 删除操作remove
 
 删除操作不可恢复
 
-#### 删除所有
+#### 删除所有，但不删除索引
     
-    > db.users.remove()
+    > db.users.remove({})
     
 #### 删除指定文档
 
     > db.users.remove({"name":"kiinlam"})
+
+#### 删除一条指定文档，如果有多条结果
+
+    > db.users.remove({"name":"kiinlam"}, true)
+
+完全删除集合，包括索引，应当使用`drop`
+
+大量删除时，采用复制需要保留的文档到新集合，再用`drop`删除集合。
+
+# 删除数据库
+
+    > db.dropDatabase()
+
+# 删除集合
+
+    > db.users.drop()
 
 # 计数操作count
     
@@ -378,14 +429,218 @@ tags: mongoDB
     > list
     >
 
+# 索引ensureIndex
+
+#### 建立索引
+
+    // 1为升序，-1为降序
+    > db.users.ensureIndex({"name":1})
+
+#### 唯一索引
+
+    > db.users.ensureIndex({"name":1},{"unique":true})
+
+#### 组合索引
+
+    > db.users.ensureIndex({"name":1, "age":-1})
+
+#### 查看索引
+
+    > db.users.getIndexes()
+
+#### 按指定索引查询
+
+    > db.users.find({"name":"kiinlam"}).hint({"name":1,"age":1})
+
+#### 删除索引
+    
+    // 删除所有自定义索引
+    > db.users.dropIndexes()
+    // 删除指定索引
+    > db.users.dropIndex("name_1")
+
+# 性能分析函数explain
+
+    > db.users.find().explain("executionStats")
+
+# 主从数据库部署
+
+#### 创建主数据库master
+
+    > mongod --dbpath=XXX --master
+
+#### 创建从数据库slave
+    
+    // 指定从数据库端口--port
+    // 指定主数据库源--source
+    > mongod --dbpath=XXX --port=8888 --slave --source=127.0.0.1:27017
+
+#### 后期指定主数据库源
+
+    > mongod --dbpath=XXX --port=8888 --slave
+    // 后期添加源
+    // 切换到local数据库
+    > use local
+    // 在sources中加入源地址
+    > db.sources.insert({"host":"127.0.0.1:27017"})
+
+# 副本集replSet
+
+该架构没有特定的主数据库，一个数据库宕机了，另一个数据库会顶上
+
+#### 创建第一个数据库服务器
+
+    // 需要指定集群名及下一个数据库地址
+    > mongod --dbpath=XXX --port 2222 --replSet mySet/127.0.0.1:3333
+
+#### 创建第二个数据库服务器
+
+    > mongod --dbpath=XXX --port 3333 --replSet mySet/127.0.0.1:2222
+
+#### 初始化副本集
+
+    // 进入任一数据库的admin集合
+    > mongo 127.0.0.1:2222/admin
+    // 执行初始化操作
+    > db.runCommand({
+                        "replSetInitiate":{
+                            "_id":"mySet",
+                            "members":[
+                                {
+                                    "_id":1,
+                                    "host":"127.0.0.1:2222"
+                                },
+                                {
+                                    "_id":2,
+                                    "host":"127.0.0.1:3333"
+                                }
+                            ]
+                        }
+                    })
+
+#### 仲裁服务器
+
+    // 启动仲裁服务器
+    > mongod --dbpath=XXX --port 4444 --replSet mySet/127.0.0.1:2222
+    // 回到admin集合中添加仲裁服务器
+    > mongo 127.0.0.1:2222/admin
+    > rs.addArb("127.0.0.1:4444")
+    // 查看服务器集群状态
+    > rs.status()
+
+# 分片技术
+
+将集合进行拆分，将拆分的数据均摊到几个分片上。
+
+主要参与者：
+
+* 客户端
+* 路由服务器mongos
+* 配置服务器
+* 分片数据库实例
+
+#### 开启配置服务器config
+
+    > mongod --dbpath=XXX --port 2222
+
+#### 开启路由服务器mongos
+
+    // 指定配置服务器
+    > mongos --port 3333 --configdb=127.0.0.1:2222
+
+#### 开启分片数据库服务器mongod
+
+    > mongod --dbpath=XXX --port 4444
+    > mongod --dbpath=XXX --port 5555
+
+#### 服务配置
+
+    // 进入mongos数据库admin集合
+    > mongo 127.0.0.1:3333/admin
+    // 添加分片服务器addshard
+    > db.runCommand({
+                        "addshard":"127.0.0.1:4444",
+                        "allowLocal":true
+                    })
+    > db.runCommand({
+                        "addshard":"127.0.0.1:5555",
+                        "allowLocal":true
+                    })
+    // 开启数据库test的分片功能enablesharding
+    > db.runCommand({"enablesharding":"test"})
+    // 指定集合中分片的片键users.name
+    > db.runCommand({"shardcollection":"test.users","key":{"name":1}})
+    // 在mongos中查看数据分片情况
+    > use test
+    > db.printShardingStatus()
+
+# 运维
+
+运维通常会涉及到以下4个方面
+
+* 安装部署
+* 状态监控
+* 安全认证
+* 备份和恢复
+
+#### 安装部署为windows服务
+    
+    // 指定日志路径，添加install参数
+    > mongod --dbpath=XXX --logpath=XXX --port=2222 --install
+    // 启动服务
+    > net start MongoDB
+
+#### 状态监控
+
+###### 静态统计
+
+*db.stats()*
+
+    // 查看单个数据库状态
+    > db.stats()
+
+`stats`比较简单，可以参考[db.stats()][stats]一文
+
+*db.serverStatus()*
+
+    // 查看整个mongodb的状态
+    // 进入admin集合
+    > mongo 127.0.0.1:2222/admin
+    // 查看状态
+    > db.serverStatus()
+
+`serverStatus`的参数很多，可以参考[db.serverStatus()][serverStatus]一文
+
+###### 实时统计
+
+    > mongostat --port 2222
+
+#### 安全认证
+
+*TODO*
+
+有点复杂，偷懒了，参考[安全认证][security]
+
+#### 备份和恢复
+
+    // 备份test数据库到D:\mongodb\backup
+    > mongodump --port 2222 -d test -o D:\mongodb\backup
+    // 恢复数据，drop表示恢复前删除原有数据
+    > mongorestore --port 2222 -d test --drop D:\mongodb\backup
+
 - - -
 
 
 ## 参考资料
 * [mongoDB][mongoDB]
+* [MongoDB文档][MongoDB-Manual]
 * [install-mongodb-on-windows][install-on-windows]
 * [8天学通MongoDB系列](http://www.cnblogs.com/huangxincheng/category/355399.html)
 
 
 [mongoDB]: https://www.mongodb.org/
 [install-on-windows]: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
+[MongoDB-Manual]: http://docs.mongodb.org/manual/
+[security]: http://docs.mongodb.org/manual/security/
+[stats]: http://www.cnblogs.com/xuegang/archive/2011/10/13/2209965.html
+[serverStatus]: http://www.cnblogs.com/xuegang/archive/2011/10/13/2210339.html
