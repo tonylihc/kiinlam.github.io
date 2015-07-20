@@ -2,7 +2,7 @@
 layout: post
 title:  react及flux架构范例Todomvc分析
 date:   2015-05-29
-categories: javascript
+categories: react
 tags: react flux
 ---
 
