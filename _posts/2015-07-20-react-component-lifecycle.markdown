@@ -69,7 +69,7 @@ tags: react
 
 *在服务端中，该方法不会被调用。*
 
-#### 6.componentWillReceiveProps
+#### 6.componentWillReceiveProps(object nextProps)
 
 组件接收到新的`props`时调用，并将其作为参数`nextProps`使用，此时可以更改组件`props`及`state`。
 
@@ -81,17 +81,17 @@ tags: react
             }
         }
 
-#### 7.shouldComponentUpdate
+#### 7.shouldComponentUpdate(object nextProps, object nextState)
 
 组件是否应当渲染新的`props`或`state`，返回`false`表示跳过后续的生命周期方法，通常不需要使用以避免出现bug。在出现应用的瓶颈时，可通过该方法进行适当的优化。
 
 *在首次渲染期间或者调用了`forceUpdate`方法后，该方法不会被调用*
 
-#### 8.componentWillUpdate
+#### 8.componentWillUpdate(object nextProps, object nextState)
 
 接收到新的`props`或者`state`后，进行渲染之前调用，此时不允许更新`props`或`state`。
 
-#### 9.componentDidUpdate
+#### 9.componentDidUpdate(object prevProps, object prevState)
 
 完成渲染新的`props`或者`state`后调用，此时可以访问到新的DOM元素。
 
