@@ -459,9 +459,27 @@ tags: mongoDB
     // 删除指定索引
     > db.users.dropIndex("name_1")
 
-# 性能分析函数explain
+# 性能分析
+
+#### 查询性能分析 explain
+
+查看查询的过程
 
     > db.users.find().explain("executionStats")
+
+#### Profiling分析 setProfilingLevel
+
+    > db.setProfilingLevel(2, 20)
+
+profile级别有三种：
+
+0. 不开启
+1. 记录慢命令，默认为大于100ms
+2. 记录所有命令
+
+profiling记录默认记录在`system.profile`中
+
+    > db['system.profile'].find()
 
 # 主从数据库部署
 
