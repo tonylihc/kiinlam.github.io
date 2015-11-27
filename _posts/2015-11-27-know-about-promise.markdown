@@ -85,3 +85,4 @@ tags: js
 ## 参考资料
 * [谈谈使用 promise 时候的一些反模式](http://efe.baidu.com/blog/promises-anti-pattern/)
 * [习题JSBin例子](http://jsbin.com/tuqukakawo/1/edit?js,console,output)
+* [Javascript Promise 迷你书](http://liubin.github.io/promises-book/)
