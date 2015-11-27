@@ -1,5 +1,6 @@
-blog.flappyend.com
+kiinlam.github.io
 =================
 
-http://blog.flappyend.com
+https://kiinlam.github.io
+
 welcome to my site
