@@ -79,6 +79,32 @@ tags: js
                                          finalHandler(resultOfDoSomethingElse)
                                          |------------------|
 
+---
+
+# 将thenable的对象转换为promise对象
+
+    Promise.resolve({
+      'then':function(resolve, reject){
+        setTimeout(function(){
+          if(Math.random()*10 > 5) {
+            resolve(1);
+          } else {
+            reject(0);
+          }
+        },1000);
+      }
+    }).then(function(result){
+      console.log(result);
+    }).catch(function(error){
+      console.error(error);
+    })
+
+通过 `Promise.resolve(Thenable对象)` 形式将 `Thenable对象` 转为 `Promise对象` 。
+
+重点在于创建具有 `then` 方法的对象，方法参数与 `Promise` 的 `then` 方法一致，在确定时执行 `resolve` 方法，拒绝时调用 `reject` 方法。
+
+Thenable主要是用于 Promise类库 之间的转换
+
 - - -
 
 
