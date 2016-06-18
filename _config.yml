@@ -1,7 +1,7 @@
 # Site settings
 title: Kiinlam's blog
 email: Kiinlam.cheung@gmail.com
-description: 又一个前端开发小码农，本博客主要分享原创文章，并与大家分享。
+description: 又一个前端开发小码农，本博客主要与大家分享分享原创文章。
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://kiinlam.github.io" # the base hostname & protocol for your site
 twitter_username: kiinlam
