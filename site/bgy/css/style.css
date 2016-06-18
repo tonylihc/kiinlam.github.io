@@ -1,8 +1,17 @@
 .post-title {
-    background: #EEEEEE;
+    background: #000000;
+    font-size: 22px;
+    line-height: 32px;
+    color: #fff;
+    padding: 5px 10px;
+}
+.post-content h2 {
+    background: #eee;
+    padding: 5px 10px;
 }
 .post-content div img {
-    box-shadow: 0 2px 5px 5px rgba(0,0,0,0.4);
+    margin-bottom: 30px;
+    box-shadow: 0 0px 4px 0px rgba(0,0,0,0.5);
 }
 .dl-text {
     resize: none;
