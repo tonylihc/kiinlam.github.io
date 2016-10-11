@@ -8,6 +8,52 @@ tags: gulp plugin
 
 ## 插件
 
+---
+
+### gulp官方推荐gulp-changed
+
+`gulp-changed`
+
+[https://github.com/sindresorhus/gulp-changed](https://github.com/sindresorhus/gulp-changed)
+
+Only pass through changed files
+
+`npm install --save-dev gulp-changed`
+
+---
+
+### gulp官方推荐gulp-cached
+
+`gulp-cached`
+
+[https://github.com/contra/gulp-cached](https://github.com/contra/gulp-cached)
+
+in-memory file cache, not for operation on sets of files
+
+---
+
+### gulp官方推荐gulp-remember
+
+`gulp-remember`
+
+[https://github.com/ahaurw01/gulp-remember](https://github.com/ahaurw01/gulp-remember)
+
+pairs nicely with gulp-cached
+
+---
+
+### gulp官方推荐gulp-newer
+
+`gulp-newer`
+
+[https://github.com/tschaub/gulp-newer](https://github.com/tschaub/gulp-newer)
+
+`npm install gulp-newer --save-dev`
+
+pass through newer source files only, supports many:1 source:dest
+
+---
+
 ### 自动加载插件模块
 
 `gulp-load-plugins`
@@ -33,6 +79,8 @@ tags: gulp plugin
     });
 
 
+---
+
 ### 压缩图片
 
 `gulp-imagemin`
@@ -56,6 +104,8 @@ tags: gulp plugin
     });
 
 
+---
+
 ### 添加浏览器前缀到CSS
 
 `gulp-autoprefixer`
@@ -77,6 +127,8 @@ tags: gulp plugin
     });
 
 
+---
+
 ### 压缩css文件
 
 `gulp-cssnano`
@@ -94,6 +146,8 @@ tags: gulp plugin
             .pipe(gulp.dest('./out'));
     });
 
+
+---
 
 ### 编译 Sass
 
@@ -113,6 +167,8 @@ tags: gulp plugin
     });
 
 
+---
+
 ### 压缩JavaScript文件
 
 `gulp-uglify`
@@ -131,6 +187,8 @@ tags: gulp plugin
     });
 
 
+---
+
 ### 检查JavaScript文件
 
 `gulp-jshint`
@@ -139,6 +197,8 @@ tags: gulp plugin
 
 `npm install --save-dev gulp-jshint`
 
+
+---
 
 ### 合并文件
 
@@ -164,6 +224,8 @@ tags: gulp plugin
         .pipe(gulp.dest('./dist/'));
     });
 
+
+---
 
 ### 浏览器重加载
 
@@ -218,6 +280,8 @@ livereload需要浏览器扩展支持
     });
 
 
+---
+
 ### gulp-usemin
 
 `gulp-usemin`
@@ -248,6 +312,8 @@ livereload需要浏览器扩展支持
     });
 
 
+---
+
 ### 获取变动的文件信息
 
 `gulp-watch-path`
@@ -273,6 +339,8 @@ livereload需要浏览器扩展支持
     })
 
 
+---
+
 ### stream-combiner2
 
 `stream-combiner2`
@@ -292,6 +360,8 @@ livereload需要浏览器扩展支持
       process.stdout                          // pipe it to stdout !
     )
 
+
+---
 
 ### gulp-sourcemaps
 
@@ -314,6 +384,8 @@ livereload需要浏览器扩展支持
     });
 
 
+---
+
 ### browserify
 
 `browserify `
@@ -323,14 +395,22 @@ livereload需要浏览器扩展支持
 [http://npm.taobao.org/package/browserify](http://npm.taobao.org/package/browserify)
 
 
+---
+
 ### vinyl-source-stream
 
 `vinyl-source-stream`
+
+---
 
 ### vinyl-buffer
 
 `vinyl-buffer`
 
+---
+
 ### gulp-plumber
+
+---
 
 ### gulp-util
