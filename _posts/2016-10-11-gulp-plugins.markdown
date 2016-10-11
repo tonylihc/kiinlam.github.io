@@ -8,7 +8,7 @@ tags: gulp plugin
 
 ## 插件
 
-#### 自动加载插件模块
+### 自动加载插件模块
 
 `gulp-load-plugins`
 
@@ -33,7 +33,7 @@ tags: gulp plugin
     });
 
 
-#### 压缩图片
+### 压缩图片
 
 `gulp-imagemin`
 
@@ -56,7 +56,7 @@ tags: gulp plugin
     });
 
 
-#### 添加浏览器前缀到CSS
+### 添加浏览器前缀到CSS
 
 `gulp-autoprefixer`
 
@@ -77,7 +77,7 @@ tags: gulp plugin
     });
 
 
-#### 压缩css文件
+### 压缩css文件
 
 `gulp-cssnano`
 
@@ -95,7 +95,7 @@ tags: gulp plugin
     });
 
 
-#### 编译 Sass
+### 编译 Sass
 
 `gulp-ruby-sass`
 
@@ -113,7 +113,7 @@ tags: gulp plugin
     });
 
 
-#### 压缩JavaScript文件
+### 压缩JavaScript文件
 
 `gulp-uglify`
 
@@ -131,7 +131,7 @@ tags: gulp plugin
     });
 
 
-#### 检查JavaScript文件
+### 检查JavaScript文件
 
 `gulp-jshint`
 
@@ -140,7 +140,7 @@ tags: gulp plugin
 `npm install --save-dev gulp-jshint`
 
 
-#### 合并文件
+### 合并文件
 
 `gulp-concat`
 
@@ -165,9 +165,9 @@ tags: gulp plugin
     });
 
 
-#### 浏览器重加载
+### 浏览器重加载
 
-##### livereload
+#### livereload
 
 `gulp-livereload`
 
@@ -189,7 +189,7 @@ livereload需要浏览器扩展支持
           .pipe(livereload());
     });
 
-##### browser-sync
+#### browser-sync
 
 `browser-sync`
 
@@ -218,7 +218,7 @@ livereload需要浏览器扩展支持
     });
 
 
-#### gulp-usemin
+### gulp-usemin
 
 `gulp-usemin`
 
@@ -248,7 +248,7 @@ livereload需要浏览器扩展支持
     });
 
 
-#### 获取变动的文件信息
+### 获取变动的文件信息
 
 `gulp-watch-path`
 
@@ -273,7 +273,7 @@ livereload需要浏览器扩展支持
     })
 
 
-#### stream-combiner2
+### stream-combiner2
 
 `stream-combiner2`
 
@@ -293,7 +293,7 @@ livereload需要浏览器扩展支持
     )
 
 
-#### gulp-sourcemaps
+### gulp-sourcemaps
 
 `gulp-sourcemaps`
 
@@ -314,7 +314,7 @@ livereload需要浏览器扩展支持
     });
 
 
-#### browserify
+### browserify
 
 `browserify `
 
@@ -323,14 +323,14 @@ livereload需要浏览器扩展支持
 [http://npm.taobao.org/package/browserify](http://npm.taobao.org/package/browserify)
 
 
-#### vinyl-source-stream
+### vinyl-source-stream
 
 `vinyl-source-stream`
 
-#### vinyl-buffer
+### vinyl-buffer
 
 `vinyl-buffer`
 
-#### gulp-plumber
+### gulp-plumber
 
-#### gulp-util
+### gulp-util
