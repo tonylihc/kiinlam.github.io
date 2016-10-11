@@ -30,12 +30,14 @@ tags: gulp
 1. 安装nodejs
 2. 初始化项目
     
-  npm init
+  `npm init`
 
 3. 安装gulp
     
+  ```
   npm install -g gulp
   npm install --save-dev gulp
+  ```
 
 4. 
 
