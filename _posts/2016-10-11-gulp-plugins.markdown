@@ -131,6 +131,8 @@ pass through newer source files only, supports many:1 source:dest
 
 ### 压缩css文件
 
+#### css nano
+
 `gulp-cssnano`
 
 [http://npm.taobao.org/package/gulp-cssnano](http://npm.taobao.org/package/gulp-cssnano)
@@ -146,6 +148,9 @@ pass through newer source files only, supports many:1 source:dest
             .pipe(gulp.dest('./out'));
     });
 
+#### css minify
+
+`gulp-minify-css`
 
 ---
 

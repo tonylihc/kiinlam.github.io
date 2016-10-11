@@ -6,38 +6,33 @@ categories: gulp
 tags: gulp
 ---
 
-## 插件
+[https://github.com/gulpjs/gulp](https://github.com/gulpjs/gulp)
 
 
-### 压缩JavaScript文件
+### 安装nodejs
 
-`gulp-uglify`
-
-[http://npm.taobao.org/package/gulp-uglify](http://npm.taobao.org/package/gulp-uglify)
-
-`npm install --save-dev gulp-uglify`
-
-    var gulp = require('gulp'),
-       uglify = require('gulp-uglify');
+### 初始化项目
     
-    gulp.task('minify', function () {
-       gulp.src('js/app.js')
-          .pipe(uglify())
-          .pipe(gulp.dest('build'))
-    });
-
-
-1. 安装nodejs
-2. 初始化项目
   `npm init`
-3. 安装gulp
+
+### 安装gulp
+    
   ```
   npm install -g gulp
   npm install --save-dev gulp
   ```
-4. 安装
 
-## 官方范例 `gulpfile.js`
+### 安装依赖包
+
+  `npm install`
+
+### 创建gulp配置文件 `gulpfile.js`
+
+### 执行gulp任务
+
+  `gulp [taskname]`
+
+### 官方范例 `gulpfile.js`
 
 ```js
 var gulp = require('gulp');
