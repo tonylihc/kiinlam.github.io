@@ -1,3 +1,5 @@
+// <script src="/js/fundebug.0.0.4.js"
+        // apikey="" silent="true"></script>
 !function(win) {
     function loaded() {
         isPending = false
@@ -93,7 +95,7 @@
         return "{" + result.join(",") + "}"
     }
     function send(data) {
-        if (hasApikey(currentScript.getAttribute("apikey") || fundebug.apikey) && fundebug.maxEventNumber && !fundebug.silent) {
+        if (hasApikey(currentScript.getAttribute("apikey") || fundebug.apikey) && fundebug.maxEventNumber && !fundebug.silent || data.shouldReport) {
             fundebug.maxEventNumber -= 1;
             var info = {
                 notifierVersion: "0.0.5",
@@ -123,22 +125,33 @@
             img.src = "https://fundebug.com/javascript?event=" + encodeURIComponent(infoStr)
         }
     }
+
     win.fundebug = {};
     var g = false
       , isPending = "complete" !== document.readyState;
+
     document.addEventListener ? document.addEventListener("DOMContentLoaded", loaded, true) : win.attachEvent("onload", loaded);
+
     var currentScript = getCurrentScript();
-    fundebug.silent = currentScript.getAttribute("silent") || false,
-    fundebug.maxEventNumber = currentScript.getAttribute("maxEventNumber") || 10,
+
+    fundebug.silent = currentScript.getAttribute("silent") || false;
+    fundebug.maxEventNumber = currentScript.getAttribute("maxEventNumber") || 10;
+
     addEvent(win, "onerror", function() {
         return function(message, file, lineNumber, columnNumber, err) {
-            if (g)
+            if (g) {
                 return void (g = false);
+            }
+
             if (0 !== lineNumber || !/Script error\.?/.test(message)) {
                 void 0 === columnNumber && win.event && (columnNumber = win.event.errorCharacter);
+
                 var fileName;
+
                 fileName = file && file !== win.location.href ? file : null;
+
                 var errInfo = getErrorInfo(err);
+
                 send({
                     message: message,
                     lineNumber: lineNumber,
@@ -152,12 +165,14 @@
             }
         }
     });
+
     var shouldCatch = true;
     if (win.atob) {
-        if (win.ErrorEvent)
+        if (win.ErrorEvent) {
             try {
                 win.ErrorEvent.prototype.hasOwnProperty("error") && (shouldCatch = false)
             } catch (e) {}
+        }
     } else {
         shouldCatch = false;
     }
@@ -178,7 +193,8 @@
                 }
             }))
         }
-    }),
+    });
+
     fundebug.notify = function(name, message, option) {
         if (name) {
             send({
@@ -188,11 +204,12 @@
                 stacktrace: getEmptyStack(),
                 type: "notification",
                 user: option && option.user,
-                metaData: option && option.metaData
+                metaData: option && option.metaData,
+                shouldReport: true
             })
         }
-    }
-    ,
+    };
+
     fundebug.notifyError = function(error, option) {
         if (error) {
             var errInfo = getErrorInfo(error);
@@ -206,8 +223,9 @@
                 severity: option && option.severity || "error",
                 type: "caught",
                 user: option && option.user,
-                metaData: option && option.metaData
+                metaData: option && option.metaData,
+                shouldReport: true
             })
         }
-    }
+    };
 }(window);
