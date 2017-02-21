@@ -176,23 +176,23 @@
         shouldCatch = false;
     }
 
-    "EventTarget Window Node ApplicationCache AudioTrackList ChannelMergerNode CryptoOperation EventSource FileReader HTMLUnknownElement IDBDatabase IDBRequest IDBTransaction KeyOperation MediaController MessagePort ModalWindow Notification SVGElementInstance Screen TextTrack TextTrackCue TextTrackList WebSocket WebSocketWorker Worker XMLHttpRequest XMLHttpRequestEventTarget XMLHttpRequestUpload".replace(/\w+/g, function(type) {
-        if (shouldCatch) {
-            var proto = win[type] && win[type].prototype;
-            proto && proto.hasOwnProperty && proto.hasOwnProperty("addEventListener") && (addEvent(proto, "addEventListener", function(e) {
-                return function(t, n, r, u) {
-                    return n && n.handleEvent && (n.handleEvent = inject(n.handleEvent)),
-                    e.call(this, t, inject(n), r, u)
-                }
-            }),
-            addEvent(proto, "removeEventListener", function(e) {
-                return function(t, n, r) {
-                    return e.call(this, t, n, r),
-                    e.call(this, t, inject(n), r)
-                }
-            }))
-        }
-    });
+    if (shouldCatch) {
+        "EventTarget Window Node ApplicationCache AudioTrackList ChannelMergerNode CryptoOperation EventSource FileReader HTMLUnknownElement IDBDatabase IDBRequest IDBTransaction KeyOperation MediaController MessagePort ModalWindow Notification SVGElementInstance Screen TextTrack TextTrackCue TextTrackList WebSocket WebSocketWorker Worker XMLHttpRequest XMLHttpRequestEventTarget XMLHttpRequestUpload".replace(/\w+/g, function(type) {
+                var proto = win[type] && win[type].prototype;
+                proto && proto.hasOwnProperty && proto.hasOwnProperty("addEventListener") && (addEvent(proto, "addEventListener", function(e) {
+                    return function(t, n, r, u) {
+                        return n && n.handleEvent && (n.handleEvent = inject(n.handleEvent)),
+                        e.call(this, t, inject(n), r, u)
+                    }
+                }),
+                addEvent(proto, "removeEventListener", function(e) {
+                    return function(t, n, r) {
+                        return e.call(this, t, n, r),
+                        e.call(this, t, inject(n), r)
+                    }
+                }))
+        });
+    }
 
     fundebug.notify = function(name, message, option) {
         if (name) {
