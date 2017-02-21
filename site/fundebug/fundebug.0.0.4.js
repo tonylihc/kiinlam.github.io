@@ -1,5 +1,4 @@
-// <script src="/js/fundebug.0.0.4.js"
-        // apikey="" silent="true"></script>
+// <script src="/js/fundebug.0.0.4.js" apikey="" silent="true"></script>
 !function(win) {
     function loaded() {
         isPending = false
@@ -122,7 +121,7 @@
                 ;
             var infoStr, img = new Image;
             infoStr = "undefined" == typeof JSON ? stringify(info) : JSON.stringify(info),
-            img.src = "https://fundebug.com/javascript?event=" + encodeURIComponent(infoStr)
+            img.src = "https://fundebug.com/javascript/?event=" + encodeURIComponent(infoStr)
         }
     }
 
@@ -228,4 +227,28 @@
             })
         }
     };
+
+    fundebug.report = function(n, m, o) {
+        var support = $.support || {},
+            option = {metaData: {}},
+            regx = /\b(name|message|user|severity)\b/;
+
+        for (var key in o) {
+            if (regx.test(key)) {
+                option[key] = o[key];
+            } else {
+                option.metaData[key] = o[key];
+            }
+        }
+
+        option.metaData.support = support;
+
+        if (typeof n === 'string') {
+            this.notify(n, m, option);
+        } else {
+            option.metaData.msg = m;
+            this.notifyError(n, option);
+        }
+    };
+
 }(window);
